@@ -1,5 +1,7 @@
+export type ItemTypes = 'normal' | 'agedBrie' | 'sulfuras' | 'backstagePasses' | 'conjured'
+
 export type Item = {
-  readonly type: 'normal' | 'agedBrie'
+  readonly type: ItemTypes
   readonly quality: number
   readonly sellIn: number
 }
