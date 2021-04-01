@@ -46,20 +46,53 @@ describe('UpdateService', () => {
       };
       const result = service.update(normalItem);
       expect(0).toEqual(result.quality);
-      expect(0).toEqual(result.sellIn);
+      expect(-1).toEqual(result.sellIn);
     });
   });
 
   describe('Aged Brie', () => {
-    it('when Q: 10, Q: 11', () => {
-      const normalItem: Item = {
+    it('when QI: 10, SII: 5, QO: 11, SIO: 4', () => {
+      const agedBrieItem: Item = {
         type: 'agedBrie',
         quality: 10,
         sellIn: 5,
       };
-      const result = service.update(normalItem);
+      const result = service.update(agedBrieItem);
       expect(11).toEqual(result.quality);
       expect(4).toEqual(result.sellIn);
+    });
+
+    it('when QI: 20, SII:0, QO: 21, SIO: -1', () => {
+      const agedBrieItem: Item = {
+        type: 'agedBrie',
+        quality: 20,
+        sellIn: 0,
+      };
+      const result = service.update(agedBrieItem);
+      expect(21).toEqual(result.quality);
+      expect(-1).toEqual(result.sellIn);
+    });
+
+    it('when QI: 21, SII:-1, QO: 23, SIO: -2', () => {
+      const agedBrieItem: Item = {
+        type: 'agedBrie',
+        quality: 21,
+        sellIn: -1,
+      };
+      const result = service.update(agedBrieItem);
+      expect(23).toEqual(result.quality);
+      expect(-2).toEqual(result.sellIn);
+    });
+
+    it('when QI: 50, SII:-1, QO: 50, SIO: -2', () => {
+      const agedBrieItem: Item = {
+        type: 'agedBrie',
+        quality: 50,
+        sellIn: -1,
+      };
+      const result = service.update(agedBrieItem);
+      expect(50).toEqual(result.quality);
+      expect(-2).toEqual(result.sellIn);
     });
   });
 

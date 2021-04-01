@@ -33,12 +33,11 @@ class AgedBrieUpdateStrategy implements UpdateStrategy {
   update(item: Item): Item {
     const newItem = { ...item };
 
-    if (newItem.sellIn < AgedBrieUpdateStrategy.SELL_IN_ENDED){
-      newItem.quality = newItem.quality + AgedBrieUpdateStrategy.ITEM_UPGRADE_QUALITY * 2;
-    }
-
     if (newItem.quality < AgedBrieUpdateStrategy.MAX_ITEM_QUALITY) {
       newItem.quality = newItem.quality + AgedBrieUpdateStrategy.ITEM_UPGRADE_QUALITY;
+      if (newItem.sellIn < AgedBrieUpdateStrategy.SELL_IN_ENDED){
+        newItem.quality = newItem.quality + AgedBrieUpdateStrategy.ITEM_UPGRADE_QUALITY;
+      }
     }
 
     newItem.sellIn -= 1;
