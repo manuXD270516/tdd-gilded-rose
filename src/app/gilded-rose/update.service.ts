@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { Item, UpdateStrategy, ItemTypes } from './gilded-rose.types'
+import { Item, UpdateStrategy } from './gilded-rose.types'
 
 class NormalUpdateStrategy implements UpdateStrategy {
   static readonly ITEM_DEGRADE_QUALITY = 1;

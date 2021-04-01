@@ -119,4 +119,50 @@ describe('UpdateService', () => {
       expect(15).toEqual(result.sellIn);
     });
   });
+
+  describe('Conjured', () => {
+    it('when Q: 10, expected Q: 8', () => {
+      const sulfurItem: Item = {
+        type: 'conjured',
+        quality: 10,
+        sellIn: 5,
+      };
+      const result = service.update(sulfurItem);
+      expect(8).toEqual(result.quality);
+      expect(4).toEqual(result.sellIn);
+    });
+
+    it('when Q: 50, expected Q: 48', () => {
+      const sulfurItem: Item = {
+        type: 'conjured',
+        quality: 50,
+        sellIn: 15,
+      };
+      const result = service.update(sulfurItem);
+      expect(48).toEqual(result.quality);
+      expect(14).toEqual(result.sellIn);
+    });
+
+    it('when Q: 0, expected Q: 0', () => {
+      const sulfurItem: Item = {
+        type: 'conjured',
+        quality: 0,
+        sellIn: 0,
+      };
+      const result = service.update(sulfurItem);
+      expect(0).toEqual(result.quality);
+      expect(-1).toEqual(result.sellIn);
+    });
+
+    it('when Q: 1, expected Q: 0', () => {
+      const sulfurItem: Item = {
+        type: 'conjured',
+        quality: 1,
+        sellIn: 2,
+      };
+      const result = service.update(sulfurItem);
+      expect(0).toEqual(result.quality);
+      expect(1).toEqual(result.sellIn);
+    });
+  });
 });
